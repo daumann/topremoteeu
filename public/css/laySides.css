@@ -1,0 +1,40 @@
+.bottom-chevron {
+    bottom: 0;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.bottom-chevron, .top-chevron {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 250px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.bg-blue-steel-light {
+    background-color: #fff !important;
+}
+
+.bottom-chevron__right, .top-chevron__right {
+    transform: rotate(3deg) translateY(50%) translateX(2%);
+}
+
+.bottom-chevron__left, .bottom-chevron__right, .top-chevron__left, .top-chevron__right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 103%;
+    height: 100%;
+    transform-origin: left;
+}
+
+#home {
+    margin-bottom: 6%;
+}
+
+#howItWorksAnchor {
+    z-index: 6;
+    pointer-events: none;
+}
