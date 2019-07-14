@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 export default class Footer extends Component {
   render() {
-    let resumeData = this.props.resumeData;
+    const { language, translationData } = this.props
     return (
       <footer>
       <div className="row">
         <div className="twelve columns">
           <ul className="social-links">
               <li>
-                  <a href={''}>Privacy Policy
+                  <a href={''}>{translationData[language]['privacyPolicy']}
                   </a>
               </li>
               <li>
@@ -17,7 +17,7 @@ export default class Footer extends Component {
                   </a>
               </li>
               <li>
-                  <a href={''}>Terms of Service
+                  <a href={''}>{translationData[language]['termsOfService']}
                   </a>
               </li>
               <li>
@@ -26,7 +26,7 @@ export default class Footer extends Component {
                   </a>
               </li>
               <li>
-                <a href={''}>Impressum
+                <a href={''}>{translationData[language]['impressum']}
                 </a>
               </li>
           </ul>

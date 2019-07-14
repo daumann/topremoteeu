@@ -13,3 +13,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+.languageSelect::before {
+  border: 0 !important;
+}
+
+.languageSelect .MuiPaper-root {
+  border-radius: 0;
+}
+
+.languageSelect {
+  margin-top: 4px;
+}

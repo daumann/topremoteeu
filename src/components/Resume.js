@@ -33,11 +33,11 @@ export default  class Resume extends Component {
     }
 
   render() {
-    let resumeData = this.props.resumeData;
+      const { language, translationData } = this.props
       return (<section id="howItWorks">
           <div className="bottom-chevron" ><div id="howItWorksAnchor" className="bottom-chevron__right bg-blue-steel-light mobile:bg-blue-steel-light"></div></div>
           <div className="row education">
-          <h1>HOW IT WORKS</h1>
+          <h1>{translationData[language]['howItWorks']}</h1>
           <div style={{
               // backgroundColor: theme.palette.background.paper,
           }}>
@@ -50,8 +50,8 @@ export default  class Resume extends Component {
                   variant="fullWidth"
                   centered
               >
-                  <Tab label={<span><b>FOR DEVELOPERS</b></span>} />
-                  <Tab label={<span><b>FOR COMPANIES</b></span>} />
+                  <Tab label={<span><b>{translationData[language]['forDevelopers']}</b></span>} />
+                  <Tab label={<span><b>{translationData[language]['forCompanies']}</b></span>} />
               </Tabs>
           <SwipeableViews
               axis={'x-reverse'}
@@ -60,75 +60,69 @@ export default  class Resume extends Component {
           >
               <TabContainer dir={'ltr'}>
                   <div>
-                      <h6>
-                          Are you one of the best remote developers out there?
-                          Here is how you get into the pool of elite talent.
-                      </h6>
+                      <h6>{translationData[language]['forDevelopersHeader']}</h6>
                       <br />
                   </div>
                   <div className="main-col">
                       <div className="row item">
                           <div className="twelve columns">
                               <p className="info">
-                                  <span style={{ color: 'rgb(214, 178, 19)'  }}>Step 1</span>
+                                  <span style={{ color: 'rgb(214, 178, 19)'  }}>{translationData[language]['step']} 1</span>
                                   <span>&bull;</span> <em className="date">
-                                  <b>Take a coding quiz</b><br />
-                                  You have three chances to complete a coding quiz geared towards your role. Try it out!</em>
+                                  <b>{translationData[language]['forDevelopersTitle1']}</b><br />
+                                  <span dangerouslySetInnerHTML={{ __html: translationData[language]['forDevelopersContent1']}}></span>
+                                  </em>
                               </p>
                               <p className="info">
-                                  <span style={{ color: 'rgb(214, 178, 19)'  }}>Step 2</span>
-                                  <span>&bull;</span> <em className="date">
-                                  <b>Complete a coding challenge</b><br />
-                                  Once you ace the quiz, you will be asked to implement a quick project. Senior developers will code review and judge if you passed. <i>This project will also be accessible to your future employer</i></em>
+                                  <span style={{ color: 'rgb(214, 178, 19)'  }}>{translationData[language]['step']} 2</span>
+                                  <span>&bull;</span> <em className="date">                                  <b>{translationData[language]['forDevelopersTitle2']}</b><br />
+
+                                  <span dangerouslySetInnerHTML={{ __html: translationData[language]['forDevelopersContent2']}}></span></em>
                               </p>
                               <p className="info">
-                                  <span style={{ color: 'rgb(214, 178, 19)'  }}>Step 3</span>
+                                  <span style={{ color: 'rgb(214, 178, 19)'  }}>{translationData[language]['step']} 3</span>
                                   <span>&bull;</span> <em className="date">
-                                  <b>Get offers</b><br />
-                                  In a 30 min remote interview we will go through your professional career and previous projects to match you with companies that best fit your profile!</em>
+                                  <b>{translationData[language]['forDevelopersTitle3']}</b><br />
+                                  <span dangerouslySetInnerHTML={{ __html: translationData[language]['forDevelopersContent3']}}></span>
+                                  </em>
                               </p>
                           </div>
                       </div>
                   </div>
-                  <Button variant="outlined"  style={{ borderColor: "rgb(17, 58, 140)", color: 'rgb(17, 58, 140)' }} >
-                      Take the quiz
+                  <Button variant="outlined"  style={{ borderColor: "rgb(17, 58, 140)", color: 'rgb(17, 58, 140)' }} > {translationData[language]['forDevelopersButton']}
                   </Button>
               </TabContainer>
               <TabContainer dir={'ltr'}>
                   <div>
-                      <h6>
-                          Stop wasting time on bad candidates.
-                          Get introduced to <b style={{ fontWeight: "normal" }}>better</b> remote engineers today.
-                      </h6>
+                      <h6 dangerouslySetInnerHTML={{ __html: translationData[language]['forCompaniesHeader']}}></h6>
                       <br />
                   </div>
                   <div className="main-col">
                       <div className="row item">
                           <div className="twelve columns">
                               <p className="info">
-                                  <span style={{ color: 'rgb(214, 178, 19)'  }}>Step 1</span>
+                                  <span style={{ color: 'rgb(214, 178, 19)'  }}>{translationData[language]['step']} 1</span>
                                   <span>&bull;</span> <em className="date">
-                                  <b>We interview and prescreen candidates</b><br />
-                                  We source candidates and put them through a quiz, a codepen challenge and a 30min interview with senior engineers.</em>
+                                  <b>{translationData[language]['forCompaniesTitle1']}</b><br />
+                                  {translationData[language]['forCompaniesContent1']}
+                                  </em>
                               </p>
                               <p className="info">
-                                  <span style={{ color: 'rgb(214, 178, 19)'  }}>Step 2</span>
+                                  <span style={{ color: 'rgb(214, 178, 19)'  }}>{translationData[language]['step']} 2</span>
                                   <span>&bull;</span> <em className="date">
-                                  <b>You define roles and requirements</b><br />
-                                  We match our pool of vetted developers against your requirements and select the best fits to be interviewed by you.</em>
+                                  <b>{translationData[language]['forCompaniesTitle2']}</b><br />
+                                  {translationData[language]['forCompaniesContent2']}</em>
                               </p>
                               <p className="info">
-                                  <span style={{ color: 'rgb(214, 178, 19)'  }}>Step 3</span>
+                                  <span style={{ color: 'rgb(214, 178, 19)'  }}>{translationData[language]['step']} 3</span>
                                   <span>&bull;</span> <em className="date">
-                                  <b>Carefree hire</b><br />
-                                  We guarantee a successful hire. If you change your mind in the first month, we will pick up the tab.</em>
+                                  <b>{translationData[language]['forCompaniesTitle3']}</b><br />
+                                  {translationData[language]['forCompaniesContent3']}</em>
                               </p>
                           </div>
                       </div>
                   </div>
-                  <Button variant="outlined"  style={{ borderColor: "rgb(17, 58, 140)", color: 'rgb(17, 58, 140)' }} >
-                      Get Started
-                  </Button>
+                  <Button variant="outlined"  style={{ borderColor: "rgb(17, 58, 140)", color: 'rgb(17, 58, 140)' }} >{translationData[language]['forCompaniesButton']}</Button>
               </TabContainer>
           </SwipeableViews>
           </div>

@@ -1,21 +1,33 @@
 import React, { Component } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+import LanguageIcon from '@material-ui/icons/Language';
+import clsx from 'clsx';
 
-const useStyles = makeStyles(theme => ({
-    button: {
-        margin: theme.spacing(1),
+const styles = theme => ({
+    dropdownStyle: {
+        border: 0,
+        borderRadius: 0,
+        backgroundColor: '#072e8c',
+        color: '#ffffff',
     },
-    input: {
-        display: 'none',
+    root: {
+        border: 0,
+        color: 'white',
     },
-}));
+    icon: {
+        color: 'white',
+    }
+});
 
-export default class Header extends Component {
+
+class Header extends Component {
 
   render() {
-    // const classes = useStyles();
-    let resumeData = this.props.resumeData;
+    let { classes, translationData, setData, language } = this.props;
     return (
       <React.Fragment>
 
@@ -25,40 +37,45 @@ export default class Header extends Component {
             <a className="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
           <a className="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
             <ul id="nav" className="nav">
-               <li className="current"><a className="smoothscroll" href="#home">Home</a></li>
-               <li><a className="smoothscroll" href="#howItWorksAnchor">How it Works</a></li>
-               <li><a className="smoothscroll" href="#testimonials">Testimonials</a></li>
-               <li><a className="smoothscroll" href="#contact">Contact</a></li>
+               <li className="current"><a className="smoothscroll" href="#home">{translationData[language]['home']}</a></li>
+               <li><a className="smoothscroll" href="#howItWorksAnchor">{translationData[language]['howItWorks']}</a></li>
+               <li><a className="smoothscroll" href="#testimonials">{translationData[language]['about']}</a></li>
+               <li><a className="smoothscroll" href="#contact">{translationData[language]['contact']}</a></li>
             </ul>
          </nav>
 
+          <Select
+              className="languageSelect"
+              classes={{ root: classes.root, icon: classes.icon }}
+              value={language}
+              onChange={(event) => {
+                  setData(event.target.value);
+              }}
+              name="name"
+              MenuProps={{ classes: { paper: classes.dropdownStyle } }}
+              style={{ pointerEvents: 'all', color: 'white', position: 'absolute', right: '6%' }}
+              renderValue={value => <span  style={{ border: 0, fontSize: 12 }} ><LanguageIcon style={{ fontSize: 28, marginBottom: '-10px' }} /> {translationData[language]['language']}: {value}</span>}
+          >
+              <MenuItem style={{ borderRadius: 0 }} value="English">English</MenuItem>
+              <MenuItem value="Deutsch">Deutsch</MenuItem>
+          </Select>
+
          <div className="row banner">
             <div className="banner-text">
-                <h1 className="responsive-headline.vertical_landings_intro-header">Hire/ Be the
-                    <a href="#howItWorksAnchor"> top 10%</a> of remote developers
+                <h1 className="responsive-headline.vertical_landings_intro-header" dangerouslySetInnerHTML={{ __html: translationData[language]['title']}}>
                 </h1>
-               <h3 style={{color:'#fff', fontFamily:'sans-serif '}}>top-remote.eu is an exclusive network of the top remote software developers and designers in the world.
+               <h3 style={{color:'#fff', fontFamily:'sans-serif '}}>{translationData[language]['subtitle']}
                </h3>
-                Companies in <b>Europe</b> hire vetted remote developers for their most important projects.
+                <span dangerouslySetInnerHTML={{ __html: translationData[language]['subsubtitle']}}></span>
                <hr/>
                <ul className="social">
                    <Button size="large" variant="outlined" style={{ fontSize: '1.9375rem', borderColor: "rgb(214, 178, 19)", color: '#fff' }}>
-                       APPLY AS A DEVELOPER
+                       {translationData[language]['button1']}
                    </Button>
-                   <span style={{ padding: '0.5em', fontSize: '20px' }}>or</span>
+                   <span style={{ padding: '0.5em', fontSize: '20px' }}>{translationData[language]['or']}</span>
                    <Button size="large" variant="outlined" style={{ fontSize: '1.9375rem', borderColor: "rgb(214, 178, 19)", color: '#fff' }} >
-                       HIRE TOP TALENT
+                       {translationData[language]['button2']}
                    </Button>
-                  {/*{*/}
-                    {/*resumeData.socialLinks && resumeData.socialLinks.map(item =>{*/}
-                      {/*return(*/}
-                              {/*<li key={item.name}>*/}
-                                {/*<a href={item.url} target="_blank"><i className={item.className}></i></a>*/}
-                              {/*</li>*/}
-                            {/*)*/}
-                          {/*}*/}
-                    {/*)*/}
-                  {/*}*/}
                </ul>
             </div>
          </div>
@@ -72,3 +89,5 @@ export default class Header extends Component {
     );
   }
 }
+
+export default withStyles(styles)(Header);
